@@ -1,11 +1,13 @@
 require "spec_helper"
 
 RSpec.describe TDD do
-  it "has a version number" do
+  it "Has a version number" do
     expect(TDD::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  it "There must be a Food class" do
+      # Expect "Food" to be an object of class "Class"
+      expect( Food.is_a?(Class) ).to be(true)
   end
+
 end
