@@ -38,4 +38,21 @@ RSpec.describe TDD do
       expect{ Food.new(@food_name, @food_nutrient_quantities * 2) }.to raise_error(ArgumentError)
   end
 
+  it "Food instances have to have getters for the quantity of each nutrient" do
+      # We can take the whole array of nutrients, but that we already have implemented. Now we
+      # want to know how much of a single nutrient a food instance has
+
+      # We want to take the quantity of some nutrient by its position
+      expect( @some_food.nutrient_quantities[0] == @food_nutrient_quantities[0] ).to be(true)
+
+      # Or by the name of the nutrient
+      expect( @some_food.quantity_of_nutrient( "proteins" ) == @food_nutrient_quantities[0] ).to be(true)
+      expect( @some_food.quantity_of_nutrient( "fats" ) == @food_nutrient_quantities[2] ).to be(true)
+      expect( @some_food.quantity_of_nutrient( @expected_nutrients_names[0] ) == @food_nutrient_quantities[0] ).to be(true)
+
+      # If we want a nutrient that doesn't exist we expect an error
+      expect{ @some_food.quantity_of_nutrient( "asdasdasda" ) }.to raise_error(ArgumentError)
+      expect{ @some_food.quantity_of_nutrient( "FaTs" ) }.to raise_error(ArgumentError)
+  end
+
 end
