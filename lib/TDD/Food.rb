@@ -1,12 +1,13 @@
 class Food
     @@nutrients_name = ['proteins', 'carbohydrates', 'fats']
+    @@nutients_energy_value = [4, 4, 9] # The units are Kcal
 
     def self.nutrients_name
         @@nutrients_name
     end
 
 
-    attr_reader :name, :nutrient_quantities
+    attr_reader :name, :nutrient_quantities, :energetic_value
 
     def initialize( name, nutrient_quantities )
         raise( ArgumentError, 'Invalid number of nutrients values' ) unless (nutrient_quantities.length == @@nutrients_name.length)
@@ -14,6 +15,12 @@ class Food
 
         # How much of each nutrient this food has
         @nutrient_quantities = nutrient_quantities
+
+        # Total energetic value of this food instance
+        @energetic_value = 0
+        @nutrient_quantities.length.times do |i|
+            @energetic_value += @nutrient_quantities[i] * @@nutients_energy_value[i]
+        end
     end
 
     def quantity_of_nutrient( n )

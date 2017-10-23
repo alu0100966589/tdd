@@ -12,7 +12,7 @@ RSpec.describe TDD do
 
   before :all do
       @expected_nutrients_names = ["proteins", "carbohydrates", "fats"]
-      @food_nutrient_quantities = [1.2, 1.3, 1.4]
+      @food_nutrient_quantities = [1, 2, 3]
       @food_name = 'chocolate'
       @some_food = Food.new(@food_name, @food_nutrient_quantities)
   end
@@ -53,6 +53,12 @@ RSpec.describe TDD do
       # If we want a nutrient that doesn't exist we expect an error
       expect{ @some_food.quantity_of_nutrient( "asdasdasda" ) }.to raise_error(ArgumentError)
       expect{ @some_food.quantity_of_nutrient( "FaTs" ) }.to raise_error(ArgumentError)
+  end
+
+  it "Food instances have to have a property that returns the total energetic value of the food" do
+      food = Food.new( "fake fish", [1, 2, 3] )
+      expected_energetic_value = 1*4 + 2*4 + 3*9
+      expect( food.energetic_value == expected_energetic_value ).to be(true)
   end
 
 end
