@@ -31,5 +31,13 @@ class Food
         return @nutrient_quantities[ index ]
     end
 
+    def to_s
+        result = @name + ': '
+        (@nutrient_quantities.length - 1).times do |i|
+            result += "#{@nutrient_quantities[i]}g of #{@@nutrients_name[i]}, "
+        end
+        result += "#{@nutrient_quantities[-1]}g of #{@@nutrients_name[-1]}"
+    end
+
 
 end

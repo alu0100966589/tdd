@@ -58,7 +58,16 @@ RSpec.describe TDD do
   it "Food instances have to have a property that returns the total energetic value of the food" do
       food = Food.new( "fake fish", [1, 2, 3] )
       expected_energetic_value = 1*4 + 2*4 + 3*9
+
       expect( food.energetic_value == expected_energetic_value ).to be(true)
+  end
+
+  it "Food instances have to have implemented to_s" do
+      food = Food.new( "fake meat", [1, 2, 3] )
+      expected_str = 'fake meat: 1g of proteins, 2g of carbohydrates, 3g of fats'
+
+      expect( food.to_s == expected_str ).to be( true )
+      expect( food.to_s == 'asdasdasd' ).to be( false )
   end
 
 end
