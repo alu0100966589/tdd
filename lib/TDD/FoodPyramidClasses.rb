@@ -1,4 +1,8 @@
 class FoodGroup
+    attr_reader :list
+    def initialize
+        @list = Dll.new
+    end 
 end
 
 class EggMilkAndDerivatives

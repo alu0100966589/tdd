@@ -160,7 +160,6 @@ RSpec.describe "Task number 7" do
             expect( FoodGroup.is_a?(Class) ).to be(true)
         end 
         it "Expecting the different food group classes to exist" do
-            expect( FoodGroup.is_a?(Class) ).to be(true)
             expect( EggMilkAndDerivatives.is_a?(Class) ).to be(true)
             expect( MeatAndDerivatives.is_a?(Class) ).to be(true)
             expect( Fish.is_a?(Class) ).to be(true)
@@ -169,5 +168,11 @@ RSpec.describe "Task number 7" do
             expect( Vegetables.is_a?(Class) ).to be(true)
             expect( Fruits.is_a?(Class) ).to be(true)
         end 
+        before :each do
+            @food_group = FoodGroup.new
+        end
+        it "Expecting the base class to have a list of food" do
+            expect{ @food_group.list }.not_to raise_error
+        end
     end
 end
