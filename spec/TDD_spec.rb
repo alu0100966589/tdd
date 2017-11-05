@@ -71,3 +71,31 @@ RSpec.describe TDD do
   end
 
 end
+
+
+
+RSpec.describe "Task number 7" do
+	context "Link list node expectations" do
+        before :each do
+            @node = DllNode.new(nil, 0, nil)
+        end
+		it "There need to be a dll node class" do
+            expect( DllNode.is_a?(Class) ).to be(true)
+		end 
+		it "The node has to have value and pointers to prev and next" do
+           expect( @node.prev == nil ).to be(true) 
+           expect( @node.next == nil ).to be(true) 
+           expect( @node.value == 0 ).to be(true) 
+           expect( @node.value == 'asdasd' ).to be(false) 
+		end 
+	end 
+
+	context "Link list node expectations" do
+        before :each do
+            @dll = Dll.new
+        end
+		it "There need to be a double link list class" do
+            expect( Dll.is_a?(Class) ).to be(true)
+		end 
+    end
+end
