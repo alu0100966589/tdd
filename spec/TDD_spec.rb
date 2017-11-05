@@ -154,4 +154,20 @@ RSpec.describe "Task number 7" do
             expect( @dll.tail == nil ).to be(true) 
         end
     end
+
+	context "Food pyramid classes expectations" do
+        it "Expecting the base class FoodGroup to exist" do
+            expect( FoodGroup.is_a?(Class) ).to be(true)
+        end 
+        it "Expecting the different food group classes to exist" do
+            expect( FoodGroup.is_a?(Class) ).to be(true)
+            expect( EggMilkAndDerivatives.is_a?(Class) ).to be(true)
+            expect( MeatAndDerivatives.is_a?(Class) ).to be(true)
+            expect( Fish.is_a?(Class) ).to be(true)
+            expect( OilsAndSweets.is_a?(Class) ).to be(true)
+            expect( CarbohydrateRich.is_a?(Class) ).to be(true)
+            expect( Vegetables.is_a?(Class) ).to be(true)
+            expect( Fruits.is_a?(Class) ).to be(true)
+        end 
+    end
 end
