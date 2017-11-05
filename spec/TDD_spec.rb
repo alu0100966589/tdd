@@ -196,5 +196,54 @@ RSpec.describe "Task number 7" do
                 expect{ group.list }.not_to raise_error
             end
         end
+        it "Checking EggMilkAndDerivatives object hierarchy and class" do
+            expect( @food_groups_instances[0].class == EggMilkAndDerivatives).to be(true)
+            expect( @food_groups_instances[0].instance_of?(EggMilkAndDerivatives) ).to be(true)
+            expect( @food_groups_instances[0].instance_of?(FoodGroup) ).to be(false)
+            expect( @food_groups_instances[0].is_a?(FoodGroup) ).to be(true)
+            expect( @food_groups_instances[0].is_a?(Class) ).to be(false)
+        end
+        it "Checking MeatAndDerivatives object hierarchy and class" do
+            expect( @food_groups_instances[1].class == MeatAndDerivatives).to be(true)
+            expect( @food_groups_instances[1].instance_of?(MeatAndDerivatives) ).to be(true)
+            expect( @food_groups_instances[1].instance_of?(FoodGroup) ).to be(false)
+            expect( @food_groups_instances[1].is_a?(FoodGroup) ).to be(true)
+            expect( @food_groups_instances[1].is_a?(Class) ).to be(false)
+        end
+        it "Checking Fish object hierarchy and class" do
+            expect( @food_groups_instances[2].class == Fish).to be(true)
+            expect( @food_groups_instances[2].instance_of?(Fish) ).to be(true)
+            expect( @food_groups_instances[2].instance_of?(FoodGroup) ).to be(false)
+            expect( @food_groups_instances[2].is_a?(FoodGroup) ).to be(true)
+            expect( @food_groups_instances[2].is_a?(Class) ).to be(false)
+        end
+        it "Checking OilsAndSweets object hierarchy and class" do
+            expect( @food_groups_instances[3].class == OilsAndSweets ).to be(true)
+            expect( @food_groups_instances[3].instance_of?(OilsAndSweets) ).to be(true)
+            expect( @food_groups_instances[3].instance_of?(FoodGroup) ).to be(false)
+            expect( @food_groups_instances[3].is_a?(FoodGroup) ).to be(true)
+            expect( @food_groups_instances[3].is_a?(Class) ).to be(false)
+        end
+        it "Checking CarbohydrateRich object hierarchy and class" do
+            expect( @food_groups_instances[4].class == CarbohydrateRich).to be(true)
+            expect( @food_groups_instances[4].instance_of?(CarbohydrateRich) ).to be(true)
+            expect( @food_groups_instances[4].instance_of?(FoodGroup) ).to be(false)
+            expect( @food_groups_instances[4].is_a?(FoodGroup) ).to be(true)
+            expect( @food_groups_instances[4].is_a?(Class) ).to be(false)
+        end
+        it "Checking Vegetables object hierarchy and class" do
+            expect( @food_groups_instances[5].class == Vegetables ).to be(true)
+            expect( @food_groups_instances[5].instance_of?(Vegetables) ).to be(true)
+            expect( @food_groups_instances[5].instance_of?(FoodGroup) ).to be(false)
+            expect( @food_groups_instances[5].is_a?(FoodGroup) ).to be(true)
+            expect( @food_groups_instances[5].is_a?(Class) ).to be(false)
+        end
+        it "Checking Fruits object hierarchy and class" do
+            expect( @food_groups_instances[6].class == Fruits ).to be(true)
+            expect( @food_groups_instances[6].instance_of?(Fruits ) ).to be(true)
+            expect( @food_groups_instances[6].instance_of?(FoodGroup) ).to be(false)
+            expect( @food_groups_instances[6].is_a?(FoodGroup) ).to be(true)
+            expect( @food_groups_instances[6].is_a?(Class) ).to be(false)
+        end
     end
 end
