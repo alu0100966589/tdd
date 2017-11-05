@@ -11,6 +11,7 @@ class Dll
             @tail = @head
         else
            aux = DllNode.new( nil, value, @head ) 
+           @head.prev = aux
            @head = aux
         end
     end
@@ -21,6 +22,7 @@ class Dll
             @tail = @head
         else
            aux = DllNode.new( @tail, value, nil ) 
+           @tail.next = aux
            @tail = aux
         end
     end

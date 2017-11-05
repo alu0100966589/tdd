@@ -111,5 +111,25 @@ RSpec.describe "Task number 7" do
             @dll.insert_tail(90)
             expect( @dll.tail.value == 90 ).to be(true)
         end
+        it "Expect insert_tail to work well after several calls" do
+            for i in (0...10)
+                @dll.insert_tail(i)
+            end
+            currentNode = @dll.head
+            for i in (0...10)
+                expect( currentNode.value == i ).to be(true)
+                currentNode = currentNode.next
+            end
+        end
+        it "Expect insert_head to work well after several calls" do
+            for i in (0...10)
+                @dll.insert_head(i)
+            end
+            currentNode = @dll.tail
+            for i in (0...10)
+                expect( currentNode.value == i ).to be(true)
+                currentNode = currentNode.prev
+            end
+        end
     end
 end
