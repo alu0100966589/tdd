@@ -97,5 +97,19 @@ RSpec.describe "Task number 7" do
 		it "There need to be a double link list class" do
             expect( Dll.is_a?(Class) ).to be(true)
 		end 
+        it "Expect an insert head method in Dll instances" do
+            expect{ @dll.insert_head(2) }.not_to raise_error
+        end
+        it "Expect an insert tail method in Dll instances" do
+            expect{ @dll.insert_tail(3) }.not_to raise_error
+        end
+        it "Expect a getter for the head node" do
+            @dll.insert_head(3)
+            expect( @dll.head.value == 3 ).to be(true)
+        end
+        it "Expect a getter for the tail node" do
+            @dll.insert_tail(90)
+            expect( @dll.tail.value == 90 ).to be(true)
+        end
     end
 end
