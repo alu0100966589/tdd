@@ -153,6 +153,14 @@ RSpec.describe "Task number 7" do
             @dll.extract_tail
             expect( @dll.tail == nil ).to be(true) 
         end
+        it "Expect an each method" do
+            for i in (0...10)
+                @dll.insert_tail(i)
+            end
+            @dll.each do |val, i|
+                expect( val == i ).to be(true)
+            end
+        end
     end
 
 	context "Food pyramid classes expectations" do
