@@ -90,7 +90,7 @@ RSpec.describe "Task number 7" do
 		end 
 	end 
 
-	context "Link list node expectations" do
+	context "Link list expectations" do
         before :each do
             @dll = Dll.new
         end
@@ -130,6 +130,28 @@ RSpec.describe "Task number 7" do
                 expect( currentNode.value == i ).to be(true)
                 currentNode = currentNode.prev
             end
+        end
+        it "Expect a extract head method in Dll instances" do
+            expect{ @dll.extract_head }.not_to raise_error
+        end
+        it "Expect a extract tail method in Dll instances" do
+            expect{ @dll.extract_tail }.not_to raise_error
+        end
+        it "Expect the extract head method to remove the head node" do
+            @dll.insert_head(1)
+            @dll.insert_head(2)
+            @dll.extract_head()
+            expect( @dll.head.value == 1 ).to be(true) 
+            @dll.extract_head
+            expect( @dll.head == nil ).to be(true) 
+        end
+        it "Expect the extract tail method to remove the tail node" do
+            @dll.insert_tail(1)
+            @dll.insert_tail(2)
+            @dll.extract_tail()
+            expect( @dll.tail.value == 1 ).to be(true) 
+            @dll.extract_tail
+            expect( @dll.tail == nil ).to be(true) 
         end
     end
 end

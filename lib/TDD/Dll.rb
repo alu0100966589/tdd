@@ -27,4 +27,28 @@ class Dll
         end
     end
 
+    def extract_head
+        if( @head != nil )
+            if( @head.next == nil )
+                @head = nil
+                @tail = nil
+            else
+                @head = @head.next
+                @head.prev.next = nil
+                @head.prev = nil
+            end
+        end
+    end
+    def extract_tail
+        if( @tail != nil )
+            if( @tail.prev == nil)
+                @tail = nil
+                @head = nil
+            else
+                @tail = @tail.prev
+                @tail.next.prev = nil
+                @tail.next = nil
+            end
+        end
+    end
 end
