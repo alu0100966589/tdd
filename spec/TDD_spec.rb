@@ -178,9 +178,23 @@ RSpec.describe "Task number 7" do
         end 
         before :each do
             @food_group = FoodGroup.new
+			@food_groups_instances = [ 
+                EggMilkAndDerivatives.new,
+			    MeatAndDerivatives.new,
+				Fish.new,
+				OilsAndSweets.new,
+				CarbohydrateRich.new,
+				Vegetables.new,
+				Fruits.new
+            ]
         end
         it "Expecting the base class to have a list of food" do
             expect{ @food_group.list }.not_to raise_error
+        end
+        it "Expecting the groups to have also a list of food" do
+            @food_groups_instances.each do |group|
+                expect{ group.list }.not_to raise_error
+            end
         end
     end
 end

@@ -5,23 +5,23 @@ class FoodGroup
     end 
 end
 
-class EggMilkAndDerivatives
+class EggMilkAndDerivatives < FoodGroup
 end
 
-class MeatAndDerivatives
+class MeatAndDerivatives < FoodGroup
 end
 
-class Fish
+class Fish < FoodGroup
 end
 
-class OilsAndSweets
+class OilsAndSweets < FoodGroup
 end
 
-class CarbohydrateRich
+class CarbohydrateRich < FoodGroup
 end
 
-class Vegetables
+class Vegetables < FoodGroup
 end
 
-class Fruits
+class Fruits < FoodGroup
 end
