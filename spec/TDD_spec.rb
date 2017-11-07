@@ -173,5 +173,29 @@ RSpec.describe "Task number 7" do
             expect( Vegetables.is_a?(Class) ).to be(true)
             expect( Fruits.is_a?(Class) ).to be(true)
         end 
+        before :each do
+            @name = "name"
+            @nutrient_quantities = [1,2,3]
+            @foods = [
+	            EggMilkAndDerivatives.new(@name, @nutrient_quantities),
+	            MeatAndDerivatives.new(@name, @nutrient_quantities),
+	            Fish.new(@name, @nutrient_quantities),
+	            OilsAndSweets.new(@name, @nutrient_quantities),
+	            CarbohydrateRich.new(@name, @nutrient_quantities),
+	            Vegetables.new(@name, @nutrient_quantities),
+	            Fruits.new(@name, @nutrient_quantities)
+            ]
+        end
+        it "Expecting the different food classes to be Food" do
+            for food in @foods
+                expect( food.is_a?(Food) ).to be(true)
+            end
+        end 
+        it "Expecting the different food classes to initialize" do
+            for food in @foods
+                expect( food.name == @name).to be(true)
+                expect( food.nutrient_quantities == @nutrient_quantities ).to be(true)
+            end
+        end
     end
 end

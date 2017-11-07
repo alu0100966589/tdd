@@ -1,20 +1,20 @@
-class EggMilkAndDerivatives 
+class EggMilkAndDerivatives < Food
 end
 
-class MeatAndDerivatives 
+class MeatAndDerivatives < Food
 end
 
-class Fish 
+class Fish < Food
 end
 
-class OilsAndSweets 
+class OilsAndSweets < Food
 end
 
-class CarbohydrateRich 
+class CarbohydrateRich < Food
 end
 
-class Vegetables 
+class Vegetables < Food
 end
 
-class Fruits 
+class Fruits < Food
 end
