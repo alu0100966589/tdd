@@ -1,27 +1,20 @@
-class FoodGroup
-    attr_reader :list
-    def initialize
-        @list = Dll.new
-    end 
+class EggMilkAndDerivatives 
 end
 
-class EggMilkAndDerivatives < FoodGroup
+class MeatAndDerivatives 
 end
 
-class MeatAndDerivatives < FoodGroup
+class Fish 
 end
 
-class Fish < FoodGroup
+class OilsAndSweets 
 end
 
-class OilsAndSweets < FoodGroup
+class CarbohydrateRich 
 end
 
-class CarbohydrateRich < FoodGroup
+class Vegetables 
 end
 
-class Vegetables < FoodGroup
-end
-
-class Fruits < FoodGroup
+class Fruits 
 end
