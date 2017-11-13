@@ -199,3 +199,18 @@ RSpec.describe "Task number 7" do
         end
     end
 end
+
+
+RSpec.describe "Assignment number 8" do
+    context 'Food instances have to be comparable' do
+        before :each do
+            @chocolate1 = OilsAndSweets.new('chocolate', [0, 5, 5])
+            @chocolate2 = OilsAndSweets.new('chocolate', [1, 4, 6])
+            @apple = Fruits.new('apple', [1, 1, 0])
+        end
+
+        it 'Food instances have to have the == operator' do
+            expect( @chocolate1 == @chocolate2 ).to be(true)
+        end
+    end
+end

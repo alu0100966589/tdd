@@ -7,6 +7,7 @@ class Food
     end
 
 
+    include Comparable
     attr_reader :name, :nutrient_quantities, :energetic_value
 
     def initialize( name, nutrient_quantities )
@@ -39,5 +40,11 @@ class Food
         result += "#{@nutrient_quantities[-1]}g of #{@@nutrients_name[-1]}"
     end
 
+    # <=> operator, defined so instances could be comparable
+    # @note We consider two foods to be equal if their name is equal
+    # @return [Fixnum]
+    def <=>(o)
+        return name <=> o.name
+    end
 
 end
