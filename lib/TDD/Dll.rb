@@ -1,4 +1,6 @@
 class Dll
+    include Enumerable
+
     attr_reader :head, :tail
     def initialize
         @head = nil
@@ -54,11 +56,9 @@ class Dll
 
     def each
         curr_node = @head
-        curr_it = 0
         while (curr_node != nil)
-            yield curr_node.value, curr_it
+            yield curr_node.value
             curr_node = curr_node.next
-            curr_it += 1
         end
     end
 end

@@ -153,14 +153,6 @@ RSpec.describe "Task number 7" do
             @dll.extract_tail
             expect( @dll.tail == nil ).to be(true) 
         end
-        it "Expect an each method" do
-            for i in (0...10)
-                @dll.insert_tail(i)
-            end
-            @dll.each do |val, i|
-                expect( val == i ).to be(true)
-            end
-        end
     end
 
 	context "Food pyramid classes expectations" do
@@ -216,6 +208,49 @@ RSpec.describe "Assignment number 8" do
 
         it 'Food instances name have to be case insensitive' do
             expect( @chocolate1 == @chocolate3 ).to be(true)
+        end
+        
+        it 'Food has to include Comparable' do
+            expect( Food.include? Comparable ).to be(true)
+        end
+    end
+
+    context 'Dll has to be enumerable' do
+        before :each do
+            @dll = Dll.new
+            for i in (0...10)
+                @dll.insert_tail(i)
+            end
+
+            @foodArray = [
+                OilsAndSweets.new('chocolate', [1, 5, 5]),
+                Vegetables.new('carrot', [5, 2, 0]),
+                Fruits.new('apple', [1, 1, 0])
+            ]
+
+            @sortedFoodArray = [
+                Fruits.new('apple', [1, 1, 0]),
+                Vegetables.new('carrot', [5, 2, 0]),
+                OilsAndSweets.new('chocolate', [1, 5, 5])
+            ]
+
+            @foodList = Dll.new
+            @foodArray.each do |food|
+                @foodList.insert_tail(food)
+            end
+        end
+        
+        it 'Dll has to have an each method' do
+            expect{ @dll.each{ |i| i+1 } }.not_to raise_error
+        end
+
+        it 'Dll has to include Enumerable' do
+            expect( Dll.include? Enumerable ).to be(true)
+        end
+
+        it 'Expect the list to work well with food instances' do
+           expect( @foodList.to_a == @foodArray ).to be(true) 
+           expect( @foodList.sort.to_a == @sortedFoodArray).to be(true)           
         end
     end
 end
