@@ -12,7 +12,7 @@ class Food
 
     def initialize( name, nutrient_quantities )
         raise( ArgumentError, 'Invalid number of nutrients values' ) unless (nutrient_quantities.length == @@nutrients_name.length)
-        @name = name
+        @name = name.downcase
 
         # How much of each nutrient this food has
         @nutrient_quantities = nutrient_quantities

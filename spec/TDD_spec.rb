@@ -206,11 +206,16 @@ RSpec.describe "Assignment number 8" do
         before :each do
             @chocolate1 = OilsAndSweets.new('chocolate', [0, 5, 5])
             @chocolate2 = OilsAndSweets.new('chocolate', [1, 4, 6])
+            @chocolate3 = OilsAndSweets.new('ChOCOLatE', [1, 4, 6])
             @apple = Fruits.new('apple', [1, 1, 0])
         end
 
         it 'Food instances have to have the == operator' do
             expect( @chocolate1 == @chocolate2 ).to be(true)
+        end
+
+        it 'Food instances name have to be case insensitive' do
+            expect( @chocolate1 == @chocolate3 ).to be(true)
         end
     end
 end
