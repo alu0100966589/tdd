@@ -204,6 +204,11 @@ RSpec.describe "Assignment number 8" do
 
         it 'Food instances have to have the == operator' do
             expect( @chocolate1 == @chocolate2 ).to be(true)
+            expect( @chocolate2 == @apple ).to be(false)
+        end
+
+        it 'Food instances have to have the != operator' do
+            expect( @chocolate1 != @apple ).to be(true)
         end
 
         it 'Food instances name have to be case insensitive' do
