@@ -1,15 +1,29 @@
 class Food
+    # Names of the nutrients
     @@nutrients_name = ['proteins', 'carbohydrates', 'fats']
-    @@nutients_energy_value = [4, 4, 9] # The units are Kcal
+    # Energy value (in Kcal) that each nutrient type gives
+    @@nutients_energy_value = [4, 4, 9]
 
+    # Getter for the nutrients name
+    # @return [Array<String>] Array with the names of the nutrients
     def self.nutrients_name
         @@nutrients_name
     end
 
 
     include Comparable
-    attr_reader :name, :nutrient_quantities, :energetic_value
 
+    # @return [String] Name of the food
+    attr_reader :name
+
+    # @return [Array<Float>] Quantity in grams of each nutrient
+    attr_reader :nutrient_quantities
+
+    # @return [Float] Total energetic value of the food
+    attr_reader :energetic_value
+
+    # @param name [String] Name of the food
+    # @param nutrient_quantities [Array<FixNum>] An array with the values for the quantities of nutrients 0:grams of proteins, 1:grams of carbohydrates, 2:grams of fats
     def initialize( name, nutrient_quantities )
         raise( ArgumentError, 'Invalid number of nutrients values' ) unless (nutrient_quantities.length == @@nutrients_name.length)
         @name = name.downcase
@@ -24,6 +38,9 @@ class Food
         end
     end
 
+    # Given the name of a nutrient, #quantity_of_nutrient returns the quantity (in grams) of that nutrient
+    # @param n [String] The name of the nutrient. The value has to be one of "proteins", "carbohydrates", "fats"
+    # @return [Float] The quantity (in grams) of the nutrient requested that the food has
     def quantity_of_nutrient( n )
         # index method returns nil if the element doesn't exist
         index = @@nutrients_name.index( n )
@@ -32,6 +49,8 @@ class Food
         return @nutrient_quantities[ index ]
     end
 
+    # to_s method
+    # @return [String] The format is "<food_name>: <protein_quantity>g, <carbohydrates_quantity>g, <fat_quantity>g"
     def to_s
         result = @name + ': '
         (@nutrient_quantities.length - 1).times do |i|
