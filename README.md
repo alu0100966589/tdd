@@ -11,3 +11,6 @@ We added a Double Linked List class to our project. For the nodes we used Ruby S
 
 ### Update [Assignment 8]
 We made Food intances comparable and Dll enumerable to work with modules mixins. We also documented the code using yard.
+
+### Update [Assignment 9]
+We added methods to the Food class to calculate the glycemic index of the food. Trying to do what we could with functional programming.
