@@ -269,6 +269,7 @@ RSpec.describe "Assignment number 9" do
             Vegetables.new('carrot', [5,2,0])
         ]
     end
+
     context 'Defining helper functions to calculate the glycemic index' do
         it 'Food instances have to have a glycemic index getter' do
             @foods.each do |food|
@@ -286,7 +287,12 @@ RSpec.describe "Assignment number 9" do
         end
 
         it 'Food instances have to have an individual glycemic index method' do
-        
+            @foods.each do |food|
+                expect{ food.individual_gi([1,2,3], [4,5,6]) }.not_to raise_error
+                expect{ food.individual_gi([1,2,3], [5,6]) }.to raise_error(ArgumentError)
+                expect( food.individual_gi([0,1,2], [0,2,1]) ).to eql(80.0)
+                expect( food.individual_gi([0,1,2], [0,1,2]) ).to eql(100.0)
+            end
         end
     end
 end

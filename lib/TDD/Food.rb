@@ -83,4 +83,15 @@ class Food
 
         DELTA_TIME/2.0 * (food_metrics.drop(1).reduce(0.0, :+) + food_metrics.take(food_metrics.length - 1).reduce(0.0, :+) - 2.0 * food_metrics[0] * food_metrics.length)
     end
+
+    # Calculates the glycemic index of a person for the given food
+    # @return [Float] Glycemic index of a person for the given food
+    # @param food_metrics (see #iauc)
+    # @param glucose_metrics [Array<Float>] Glucose in blood metrics of a person, taken each DELTA_TIME minutes for pure glucose
+    def individual_gi(food_metrics, glucose_metrics)
+        raise ArgumentError.new("Sizes don't match") unless food_metrics.length == glucose_metrics.length
+        
+        iauc(food_metrics) / iauc(glucose_metrics) * 100.0 
+    end
+
 end
