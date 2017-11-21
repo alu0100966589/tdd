@@ -259,3 +259,34 @@ RSpec.describe "Assignment number 8" do
         end
     end
 end
+
+
+RSpec.describe "Assignment number 9" do
+    before :each do
+        @foods = [
+            Food.new('random', [1,1,1]),
+            Fruits.new('apple', [1,1,0]),
+            Vegetables.new('carrot', [5,2,0])
+        ]
+    end
+    context 'Defining helper functions to calculate the glycemic index' do
+        it 'Food instances have to have a glycemic index getter' do
+            @foods.each do |food|
+                expect(food.glycemic_index == nil).to be(true)
+            end 
+        end
+
+        it 'Food instances have to have an iauc method' do
+            @foods.each do |food|
+                expect{ food.iauc([1,2,3,4]) }.not_to raise_error
+                expect{ food.iauc([]) }.to raise_error(ArgumentError)
+                expect{ food.iauc([1]) }.to raise_error(ArgumentError)
+                expect( food.iauc([1,2,3]) ).to eql(5.0)
+            end 
+        end
+
+        it 'Food instances have to have an individual glycemic index method' do
+        
+        end
+    end
+end
