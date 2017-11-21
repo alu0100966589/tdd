@@ -94,4 +94,17 @@ class Food
         iauc(food_metrics) / iauc(glucose_metrics) * 100.0 
     end
 
+    # Calculates the glycemic index for the food given data of various people
+    # @return [Food] Returns selfs so other methods could be chained
+    # @param [Array<Hash<Symbol, Array<Float>>>] People metrics, each hash in the array is the data for a person, the hash has to have :food_metrics and :glucose_metrics keys which values are the arrays corresponding to the glucose in blood metric after the food and the pure glucose respectively.
+    def gi(people_metrics)
+        people_igs = []
+        people_metrics.each do |person_metrics|
+            people_igs << individual_gi(person_metrics[:food_metrics], person_metrics[:glucose_metrics])
+        end
+
+        @glycemic_index = people_igs.reduce(0.0, :+) / people_igs.length
+        return self
+    end
+
 end

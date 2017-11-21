@@ -268,6 +268,26 @@ RSpec.describe "Assignment number 9" do
             Fruits.new('apple', [1,1,0]),
             Vegetables.new('carrot', [5,2,0])
         ]
+
+        @metrics1 = [
+            {
+                food_metrics: [1.1, 1.2, 1.3],
+                glucose_metrics: [1.1, 1.2, 1.3]
+            }
+        ]
+
+        @metrics2 = [
+            {
+                food_metrics: [1,2,3],
+                glucose_metrics: [1,2,3]
+            },
+            {
+                food_metrics: [1.1, 2.2],
+                glucose_metrics: [2.0, 3.0]
+            }
+        ]
+
+        @expected_igs = [1.0, 68.33]
     end
 
     context 'Defining helper functions to calculate the glycemic index' do
@@ -295,4 +315,42 @@ RSpec.describe "Assignment number 9" do
             end
         end
     end
+
+    context 'Defining the glycemic index method' do
+        before :each do
+            @metrics1 = [
+                {
+                    food_metrics: [1.1, 1.2, 1.3],
+                    glucose_metrics: [1.1, 1.2, 1.3]
+                }
+            ]
+
+            @metrics2 = [
+                {
+                    food_metrics: [1,2,3],
+                    glucose_metrics: [1,2,3]
+                },
+                {
+                    food_metrics: [1.1, 2.2],
+                    glucose_metrics: [2.0, 3.0]
+                }
+            ]
+
+            @expected_igs = [100.0, 68.33]
+        end
+
+        it 'Food instances have to have a glycemic index method' do
+            @foods.each do |food|
+                expect{ food.gi(@metrics1) }.not_to raise_error
+            end 
+        end
+
+        it 'Glycemc index has to work as expected' do
+            @foods.each do |food|
+                expect( food.gi(@metrics1).glycemic_index ).to eql(@expected_igs[0])
+                expect( food.gi(@metrics2).glycemic_index.round(2)).to eql(@expected_igs[1])
+            end
+        end
+    end
+
 end
