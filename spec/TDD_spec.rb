@@ -354,3 +354,32 @@ RSpec.describe "Assignment number 9" do
     end
 
 end
+
+RSpec.describe "Assignment number 10" do
+    before :each do
+        @food = [
+            EggMilkAndDerivatives.new('fried egg', [14.1, 0.0, 19.5]),
+            EggMilkAndDerivatives.new('milk', [3.3, 4.8, 3.2]),
+            EggMilkAndDerivatives.new('yogurt', [3.8, 4.9, 3.8]),
+            MeatAndDerivatives.new('pork', [21.5, 0.0, 6.3]),
+            MeatAndDerivatives.new('beef', [21.1, 0.0, 3.1]),
+            MeatAndDerivatives.new('chicken', [20.6, 0.0, 5.6]),
+            Fish.new('cod', [17.7, 0.0, 0.4]),
+            Fish.new('tuna', [21.5, 0.0, 15.5]),
+            Fish.new('salmon', [19.9, 0.0, 13.6]),
+            OilsAndSweets.new('olive oil', [0.0, 0.2, 99.6]),
+            OilsAndSweets.new('butter', [0.7, 0.0, 83.2]),
+            OilsAndSweets.new('chocolate', [5.3, 47.0, 30.0]),
+            CarbohydrateRich.new('sugar', [0.0, 99.8, 0.0]),
+            CarbohydrateRich.new('rice', [6.8, 77.7, 0.6]),
+            CarbohydrateRich.new('lentils', [23.5, 52.0, 1.4]),
+            CarbohydrateRich.new('potatoe', [2.0, 15.4, 0.1]),
+            Vegetables.new('tomato', [1.0, 3.5, 0.2]),
+            Vegetables.new('onion', [1.3, 5.8, 0.3]),
+            Vegetables.new('pumpkin', [1.1, 4.8, 0.1]),
+            Fruits.new('apple', [0.3, 12.4, 0.4]),
+            Fruits.new('banana', [1.2, 21.4, 0.2]),
+            Fruits.new('pear', [0.5, 12.7, 0.3])
+        ]
+    end
+end
