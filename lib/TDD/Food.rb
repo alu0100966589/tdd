@@ -66,10 +66,10 @@ class Food
     end
 
     # <=> operator, defined so instances could be comparable
-    # @note We consider two foods to be equal if their name is equal
+    # @note We consider two foods to be equal if their energetic value is the samew
     # @return [Fixnum]
     def <=>(o)
-        return name <=> o.name
+        return self.energetic_value <=> o.energetic_value
     end
 
     # Time interval between metrics (in minutes)

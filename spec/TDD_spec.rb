@@ -197,8 +197,7 @@ RSpec.describe "Assignment number 8" do
     context 'Food instances have to be comparable' do
         before :each do
             @chocolate1 = OilsAndSweets.new('chocolate', [0, 5, 5])
-            @chocolate2 = OilsAndSweets.new('chocolate', [1, 4, 6])
-            @chocolate3 = OilsAndSweets.new('ChOCOLatE', [1, 4, 6])
+            @chocolate2 = OilsAndSweets.new('white chocolate', [0, 5, 5])
             @apple = Fruits.new('apple', [1, 1, 0])
         end
 
@@ -211,10 +210,6 @@ RSpec.describe "Assignment number 8" do
             expect( @chocolate1 != @apple ).to be(true)
         end
 
-        it 'Food instances name have to be case insensitive' do
-            expect( @chocolate1 == @chocolate3 ).to be(true)
-        end
-        
         it 'Food has to include Comparable' do
             expect( Food.include? Comparable ).to be(true)
         end
@@ -228,15 +223,15 @@ RSpec.describe "Assignment number 8" do
             end
 
             @foodArray = [
-                OilsAndSweets.new('chocolate', [1, 5, 5]),
-                Vegetables.new('carrot', [5, 2, 0]),
-                Fruits.new('apple', [1, 1, 0])
+                OilsAndSweets.new('chocolate', [3, 3, 3]),
+                Vegetables.new('carrot', [2, 2, 2]),
+                Fruits.new('apple', [1, 1, 1])
             ]
 
             @sortedFoodArray = [
-                Fruits.new('apple', [1, 1, 0]),
-                Vegetables.new('carrot', [5, 2, 0]),
-                OilsAndSweets.new('chocolate', [1, 5, 5])
+                Fruits.new('apple', [1, 1, 1]),
+                Vegetables.new('carrot', [2, 2, 2]),
+                OilsAndSweets.new('chocolate', [3, 3, 3])
             ]
 
             @foodList = Dll.new
