@@ -405,5 +405,10 @@ RSpec.describe "Assignment number 10" do
             expect{ @simpler_test.sort_for }.not_to raise_error
             expect( @simpler_test.sort_for ).to eql(@simpler_test_ordered)
         end
+
+        it 'Array should have a sort_each method' do
+            expect{ @simpler_test.sort_each }.not_to raise_error
+            expect( @simpler_test.sort_each ).to eql(@simpler_test_ordered)
+        end
     end
 end
