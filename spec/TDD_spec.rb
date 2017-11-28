@@ -410,5 +410,25 @@ RSpec.describe "Assignment number 10" do
             expect{ @simpler_test.sort_each }.not_to raise_error
             expect( @simpler_test.sort_each ).to eql(@simpler_test_ordered)
         end
+
+        it 'Array should have a sort method' do
+            expect{ @simpler_test.sort }.not_to raise_error
+            expect( @simpler_test.sort ).to eql(@simpler_test_ordered)
+        end
+        
+        it 'All sorts should end with the same result' do
+            a = @food.sort_for
+            b = @food.sort_each
+            c = @food.sort
+            
+            expect( a == b ).to be(true)
+            expect( b == c ).to be(true)
+            
+            @food.length.times.each do |i|
+                expect( a[i] == b[i] ).to be(true)
+                expect( b[i] == c[i] ).to be(true)
+            end
+        end
+
     end
 end
