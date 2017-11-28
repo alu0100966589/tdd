@@ -429,6 +429,16 @@ RSpec.describe "Assignment number 10" do
                 expect( b[i] == c[i] ).to be(true)
             end
         end
-
+    end
+    
+    context "Benchmark" do
+        it "Sorting benchmark" do
+            n = 1000
+            Benchmark.bm(6) do |x|
+                x.report("For: " ){ n.times{@food.sort_for} }
+                x.report("Each: "){ n.times{@food.sort_each} }
+                x.report("Sort: "){ n.times{@food.sort} }
+            end
+        end
     end
 end
