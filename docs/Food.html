@@ -6,7 +6,7 @@
 <title>
   Class: Food
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -112,6 +112,22 @@
   <h2>Constant Summary</h2>
   <dl class="constants">
     
+      <dt id="DELTA_TIME-constant" class="">DELTA_TIME =
+        <div class="docstring">
+  <div class="discussion">
+    
+<p>Time interval between metrics (in minutes)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+      </dt>
+      <dd><pre class="code"><span class='float'>5.0</span></pre></dd>
+    
       <dt id="nutrients_name-classvariable" class="">@@nutrients_name =
         <div class="docstring">
   <div class="discussion">
@@ -176,6 +192,35 @@
   
     <span class="summary_desc"><div class='inline'>
 <p>Total energetic value of the food.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#glycemic_index-instance_method" title="#glycemic_index (instance method)">#<strong>glycemic_index</strong>  &#x21d2; Float | nil </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Glycemic index for this food if it is calculated, nil otherwise.</p>
 </div></span>
   
 </li>
@@ -312,6 +357,79 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#gi-instance_method" title="#gi (instance method)">#<strong>gi</strong>(people_metrics)  &#x21d2; Food </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Calculates the glycemic index for the food given data of various people.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#iauc-instance_method" title="#iauc (instance method)">#<strong>iauc</strong>(food_metrics)  &#x21d2; Float </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Calculates the incremental area under the curve for this food given the
+glucose levels in blood for a person.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#individual_gi-instance_method" title="#individual_gi (instance method)">#<strong>individual_gi</strong>(food_metrics, glucose_metrics)  &#x21d2; Float </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Calculates the glycemic index of a person for the given food.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(name, nutrient_quantities)  &#x21d2; Food </a>
     
 
@@ -433,7 +551,7 @@
         <span class='name'>nutrient_quantities</span>
       
       
-        <span class='type'>(<tt>Array&lt;FixNum&gt;</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;FixNum&gt;</tt>)</span>
       
       
       
@@ -467,9 +585,6 @@ proteins, 1:grams of carbohydrates, 2:grams of fats</p>
       <pre class="lines">
 
 
-27
-28
-29
 30
 31
 32
@@ -479,10 +594,16 @@ proteins, 1:grams of carbohydrates, 2:grams of fats</p>
 36
 37
 38
-39</pre>
+39
+40
+41
+42
+43
+44
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/TDD/Food.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/TDD/Food.rb', line 30</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_nutrient_quantities'>nutrient_quantities</span> <span class='rparen'>)</span>
     <span class='id identifier rubyid_raise'>raise</span><span class='lparen'>(</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Invalid number of nutrients values</span><span class='tstring_end'>&#39;</span></span> <span class='rparen'>)</span> <span class='kw'>unless</span> <span class='lparen'>(</span><span class='id identifier rubyid_nutrient_quantities'>nutrient_quantities</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='cvar'>@@nutrients_name</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='rparen'>)</span>
@@ -496,6 +617,9 @@ proteins, 1:grams of carbohydrates, 2:grams of fats</p>
     <span class='ivar'>@nutrient_quantities</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
         <span class='ivar'>@energetic_value</span> <span class='op'>+=</span> <span class='ivar'>@nutrient_quantities</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span> <span class='op'>*</span> <span class='cvar'>@@nutients_energy_value</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span>
     <span class='kw'>end</span>
+
+    <span class='comment'># Setting the glycemic index to a default value
+</span>    <span class='ivar'>@glycemic_index</span> <span class='op'>=</span> <span class='kw'>nil</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -571,6 +695,67 @@ proteins, 1:grams of carbohydrates, 2:grams of fats</p>
       
       <span id=""></span>
       <div class="method_details ">
+  <h3 class="signature " id="glycemic_index-instance_method">
+  
+    #<strong>glycemic_index</strong>  &#x21d2; <tt>Float | nil</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns Glycemic index for this food if it is calculated, nil otherwise</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Float | nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Glycemic index for this food if it is calculated, nil otherwise</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+26
+27
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/TDD/Food.rb', line 26</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_glycemic_index'>glycemic_index</span>
+  <span class='ivar'>@glycemic_index</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
   <h3 class="signature " id="name-instance_method">
   
     #<strong>name</strong>  &#x21d2; <tt>String</tt>  <span class="extras">(readonly)</span>
@@ -634,7 +819,7 @@ proteins, 1:grams of carbohydrates, 2:grams of fats</p>
       <div class="method_details ">
   <h3 class="signature " id="nutrient_quantities-instance_method">
   
-    #<strong>nutrient_quantities</strong>  &#x21d2; <tt>Array&lt;Float&gt;</tt>  <span class="extras">(readonly)</span>
+    #<strong>nutrient_quantities</strong>  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;Float&gt;</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -656,7 +841,7 @@ proteins, 1:grams of carbohydrates, 2:grams of fats</p>
     <li>
       
       
-        <span class='type'>(<tt>Array&lt;Float&gt;</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;Float&gt;</tt>)</span>
       
       
       
@@ -700,7 +885,7 @@ proteins, 1:grams of carbohydrates, 2:grams of fats</p>
       <div class="method_details first">
   <h3 class="signature first" id="nutrients_name-class_method">
   
-    .<strong>nutrients_name</strong>  &#x21d2; <tt>Array&lt;String&gt;</tt> 
+    .<strong>nutrients_name</strong>  &#x21d2; <tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;String&gt;</tt> 
   
 
   
@@ -722,7 +907,7 @@ proteins, 1:grams of carbohydrates, 2:grams of fats</p>
     <li>
       
       
-        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;String&gt;</tt>)</span>
       
       
       
@@ -777,7 +962,7 @@ proteins, 1:grams of carbohydrates, 2:grams of fats</p>
   <div class="note notetag">
     <strong>Note:</strong>
     <div class='inline'>
-<p>We consider two foods to be equal if their name is equal</p>
+<p>We consider two foods to be equal if their energetic value is the samew</p>
 </div>
   </div>
 
@@ -809,15 +994,321 @@ proteins, 1:grams of carbohydrates, 2:grams of fats</p>
       <pre class="lines">
 
 
-65
-66
-67</pre>
+71
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/TDD/Food.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'lib/TDD/Food.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='op'>&lt;=&gt;</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
-    <span class='kw'>return</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>&lt;=&gt;</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+    <span class='kw'>return</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_energetic_value'>energetic_value</span> <span class='op'>&lt;=&gt;</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_energetic_value'>energetic_value</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="gi-instance_method">
+  
+    #<strong>gi</strong>(people_metrics)  &#x21d2; <tt><span class='object_link'><a href="" title="Food (class)">Food</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Calculates the glycemic index for the food given data of various people</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>People</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;Hash&lt;Symbol, <span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;Float&gt;&gt;&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>metrics, each hash in the array is the data for a person, the hash has to
+have :food_metrics and :glucose_metrics keys which values are the arrays
+corresponding to the glucose in blood metric after the food and the pure
+glucose respectively.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Food (class)">Food</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Returns selfs so other methods could be chained</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+100
+101
+102
+103
+104
+105
+106
+107
+108</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/TDD/Food.rb', line 100</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_gi'>gi</span><span class='lparen'>(</span><span class='id identifier rubyid_people_metrics'>people_metrics</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_people_igs'>people_igs</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_people_metrics'>people_metrics</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_person_metrics'>person_metrics</span><span class='op'>|</span>
+        <span class='id identifier rubyid_people_igs'>people_igs</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_individual_gi'>individual_gi</span><span class='lparen'>(</span><span class='id identifier rubyid_person_metrics'>person_metrics</span><span class='lbracket'>[</span><span class='symbol'>:food_metrics</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_person_metrics'>person_metrics</span><span class='lbracket'>[</span><span class='symbol'>:glucose_metrics</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+
+    <span class='ivar'>@glycemic_index</span> <span class='op'>=</span> <span class='id identifier rubyid_people_igs'>people_igs</span><span class='period'>.</span><span class='id identifier rubyid_reduce'>reduce</span><span class='lparen'>(</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='symbol'>:+</span><span class='rparen'>)</span> <span class='op'>/</span> <span class='id identifier rubyid_people_igs'>people_igs</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+    <span class='kw'>return</span> <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="iauc-instance_method">
+  
+    #<strong>iauc</strong>(food_metrics)  &#x21d2; <tt>Float</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Calculates the incremental area under the curve for this food given the
+glucose levels in blood for a person.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>food_metrics</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;Float&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Glucose in blood metrics of a person, taken each DELTA_TIME minutes for a
+given food</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Area under the curve of the metrics</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+81
+82
+83
+84
+85</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/TDD/Food.rb', line 81</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_iauc'>iauc</span><span class='lparen'>(</span><span class='id identifier rubyid_food_metrics'>food_metrics</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Need at least 2 values to calculate the first trapezoid area</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='lparen'>(</span><span class='id identifier rubyid_food_metrics'>food_metrics</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;</span> <span class='int'>1</span><span class='rparen'>)</span>
+
+    <span class='const'><span class='object_link'><a href="#DELTA_TIME-constant" title="Food::DELTA_TIME (constant)">DELTA_TIME</a></span></span><span class='op'>/</span><span class='float'>2.0</span> <span class='op'>*</span> <span class='lparen'>(</span><span class='id identifier rubyid_food_metrics'>food_metrics</span><span class='period'>.</span><span class='id identifier rubyid_drop'>drop</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_reduce'>reduce</span><span class='lparen'>(</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='symbol'>:+</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='id identifier rubyid_food_metrics'>food_metrics</span><span class='period'>.</span><span class='id identifier rubyid_take'>take</span><span class='lparen'>(</span><span class='id identifier rubyid_food_metrics'>food_metrics</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_reduce'>reduce</span><span class='lparen'>(</span><span class='float'>0.0</span><span class='comma'>,</span> <span class='symbol'>:+</span><span class='rparen'>)</span> <span class='op'>-</span> <span class='float'>2.0</span> <span class='op'>*</span> <span class='id identifier rubyid_food_metrics'>food_metrics</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>*</span> <span class='id identifier rubyid_food_metrics'>food_metrics</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="individual_gi-instance_method">
+  
+    #<strong>individual_gi</strong>(food_metrics, glucose_metrics)  &#x21d2; <tt>Float</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Calculates the glycemic index of a person for the given food</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>glucose_metrics</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;Float&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Glucose in blood metrics of a person, taken each DELTA_TIME minutes for
+pure glucose</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>food_metrics</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;Float&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Glucose in blood metrics of a person, taken each DELTA_TIME minutes for a
+given food</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Glycemic index of a person for the given food</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+91
+92
+93
+94
+95</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/TDD/Food.rb', line 91</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_individual_gi'>individual_gi</span><span class='lparen'>(</span><span class='id identifier rubyid_food_metrics'>food_metrics</span><span class='comma'>,</span> <span class='id identifier rubyid_glucose_metrics'>glucose_metrics</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Sizes don&#39;t match</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_food_metrics'>food_metrics</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='id identifier rubyid_glucose_metrics'>glucose_metrics</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+    
+    <span class='id identifier rubyid_iauc'>iauc</span><span class='lparen'>(</span><span class='id identifier rubyid_food_metrics'>food_metrics</span><span class='rparen'>)</span> <span class='op'>/</span> <span class='id identifier rubyid_iauc'>iauc</span><span class='lparen'>(</span><span class='id identifier rubyid_glucose_metrics'>glucose_metrics</span><span class='rparen'>)</span> <span class='op'>*</span> <span class='float'>100.0</span> 
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -903,16 +1394,16 @@ proteins, 1:grams of carbohydrates, 2:grams of fats</p>
       <pre class="lines">
 
 
-44
-45
-46
-47
-48
-49
-50</pre>
+50
+51
+52
+53
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/TDD/Food.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'lib/TDD/Food.rb', line 50</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_quantity_of_nutrient'>quantity_of_nutrient</span><span class='lparen'>(</span> <span class='id identifier rubyid_n'>n</span> <span class='rparen'>)</span>
     <span class='comment'># index method returns nil if the element doesn&#39;t exist
@@ -971,16 +1462,16 @@ proteins, 1:grams of carbohydrates, 2:grams of fats</p>
       <pre class="lines">
 
 
-54
-55
-56
-57
-58
-59
-60</pre>
+60
+61
+62
+63
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/TDD/Food.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'lib/TDD/Food.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
     <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='ivar'>@name</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>: </span><span class='tstring_end'>&#39;</span></span>
@@ -999,9 +1490,9 @@ proteins, 1:grams of carbohydrates, 2:grams of fats</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov 14 19:47:33 2017 by
+  Generated on Tue Nov 28 21:26:18 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.1).
+  0.9.12 (ruby-2.3.0).
 </div>
 
     </div>
