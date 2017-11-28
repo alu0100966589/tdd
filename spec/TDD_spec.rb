@@ -376,5 +376,34 @@ RSpec.describe "Assignment number 10" do
             Fruits.new('banana', [1.2, 21.4, 0.2]),
             Fruits.new('pear', [0.5, 12.7, 0.3])
         ]
+        
+        @simpler_test = [
+            3.2,
+            1.4,
+            6.3,
+            3.2,
+            0,
+            -2.14,
+            5.2,
+            -100
+        ]
+        
+        @simpler_test_ordered = [
+            -100,
+            -2.14,
+            0,
+            1.4,
+            3.2,
+            3.2,
+            5.2,
+            6.3
+        ]
+    end
+    
+    context 'Sorting algorithms' do
+        it 'Array should have a sort_for method' do
+            expect{ @simpler_test.sort_for }.not_to raise_error
+            expect( @simpler_test.sort_for ).to eql(@simpler_test_ordered)
+        end
     end
 end
